@@ -112,3 +112,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+anirocks/
+bot.ini
+*.session
+*.session-journal
