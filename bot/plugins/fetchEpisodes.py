@@ -58,20 +58,19 @@ async def anime_button(client, query):
 async def episode_handler(_, query: types.CallbackQuery):
     await query.message.edit('**Processing...**')
     anime_id = query.data.split('_')[1]
-    episode = query.data.split('_')[2]
     data = await bot.fetch_episodes(
-                anime_id=anime_id, episode=episode
+                anime_id=anime_id, episode=query.data.split('_')[2]
             )
-    if len(data) == 0:
+    if len(data.links) == 0:
         return await query.message.edit(
-            '**Episode you requested is not Available at the moment**'
+            '**Episode you requested is not Available at the moment**',
         )
     buttons = [
         [
             types.InlineKeyboardButton(anime.size, url=anime.src)
-            for anime in data
+            for anime in data.links
         ],[
-            types.InlineKeyboardButton('Back to Episodes', callback_data=f'ep_{anime_id}_{episode}')
+            types.InlineKeyboardButton('Back to Episodes', callback_data=f'ep_{anime_id}_{data.totalepisode}')
         ]
     ]
     await query.message.edit(

@@ -1,6 +1,11 @@
+TODOS:
 - [✅] Bot's Base
 - [✅] Wrapper for Requesting APIs
 - [✅] most errors fixed including Invalid URL in buttons
 - [✅] Good Start Message and a Documentation
 - [✅] Add a back button from episodes to anime details
 - [] More Features Like WatchList and Inline Support for Users
+- [] Reverse Search Anime and get Stream links
+
+BUGS:
+- [✅] If user has Selected an Episode and go back to the list, theres only up to selected episode

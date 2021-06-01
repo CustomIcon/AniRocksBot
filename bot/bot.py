@@ -44,4 +44,4 @@ class bot(Client):
         return (await anirocks.details(anime_id)).results[0]
     
     async def fetch_episodes(self, anime_id, episode):
-        return (await anirocks.watch(anime_id, episode)).links
+        return (await anirocks.watch(anime_id, episode))
