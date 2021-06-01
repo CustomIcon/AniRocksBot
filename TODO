@@ -1,5 +1,6 @@
 - [✅] Bot's Base
 - [✅] Wrapper for Requesting APIs
 - [✅] most errors fixed including Invalid URL in buttons
-- [] Good Start Message and a Documentation
+- [✅] Good Start Message and a Documentation
+- [✅] Add a back button from episodes to anime details
 - [] More Features Like WatchList and Inline Support for Users

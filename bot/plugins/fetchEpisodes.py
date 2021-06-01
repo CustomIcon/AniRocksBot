@@ -27,13 +27,13 @@ async def episode_handler(_, query: types.CallbackQuery):
         )
 
 
-@bot.on_callback_query(filters.regex(r'a_'))
+@bot.on_callback_query(filters.regex(r'a_'), group=4)
 async def anime_button(client, query):
     try:
         cache = _cache[int(str(query.from_user.id) + str(query.message.message_id))]
     except KeyError:
         return await query.answer(
-            'Message too Old', show_alert=True
+            'Error: Message is old.', show_alert=True
         )
     if query.data.startswith('a_p'):
         curr_page = int(query.data.split('_')[3])
@@ -70,6 +70,8 @@ async def episode_handler(_, query: types.CallbackQuery):
         [
             types.InlineKeyboardButton(anime.size, url=anime.src)
             for anime in data
+        ],[
+            types.InlineKeyboardButton('Back to Episodes', callback_data=f'ep_{anime_id}_{episode}')
         ]
     ]
     await query.message.edit(
