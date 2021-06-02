@@ -1,7 +1,6 @@
 from bot import bot
-from pyrogram import types, filters, errors
+from pyrogram import types, filters
 from bot.utils.buttons import _cache, page
-import re
 
 
 @bot.on_callback_query(filters.regex(r'ep_'))
@@ -64,6 +63,10 @@ async def episode_handler(_, query: types.CallbackQuery):
     if len(data.links) == 0:
         return await query.message.edit(
             '**Episode you requested is not Available at the moment**',
+            reply_markup=types.InlineKeyboardMarkup(
+                [[types.InlineKeyboardButton('Back to Episodes', callback_data=f'ep_{anime_id}_{_cache[int(str(query.from_user.id) + str(query.message.message_id))]}')]]
+                
+            )
         )
     buttons = [
         [
@@ -77,4 +80,5 @@ async def episode_handler(_, query: types.CallbackQuery):
         'Thank you for using @AniRocksBot. This is an Ad-Free Opensource project, and a One-Man Team Driven Product.\n**Here is your Request:**',
         reply_markup=types.InlineKeyboardMarkup(buttons)
     )
+    await query.answer()
     
