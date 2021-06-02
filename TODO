@@ -4,8 +4,8 @@ TODOS:
 - [✅] most errors fixed including Invalid URL in buttons
 - [✅] Good Start Message and a Documentation
 - [✅] Add a back button from episodes to anime details
+- [✅] Reverse Search Anime and get Stream links
 - [] More Features Like WatchList and Inline Support for Users
-- [] Reverse Search Anime and get Stream links
 
 BUGS:
 - [✅] If user has Selected an Episode and go back to the list, theres only up to selected episode

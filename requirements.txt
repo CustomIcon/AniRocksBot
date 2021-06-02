@@ -5,3 +5,4 @@ PySocks==1.7.1
 TgCrypto==1.2.2
 ujson==4.0.2
 pyromod==1.5
+tracemoepy==3.8

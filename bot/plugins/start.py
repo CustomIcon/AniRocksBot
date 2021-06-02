@@ -1,7 +1,7 @@
 from bot import bot
 from pyrogram import filters, types
 
-__header__='📕 **Page** {} of 3\n\n'
+__header__='📕 **Page** {} of 4\n\n'
 
 @bot.on_message(
     filters.command("start"), group=-1
@@ -35,6 +35,14 @@ async def docs_btn(_, query):
             )
         )
     elif data == '3':
+        return await query.message.edit(
+            __header__.format(data)
+            + 'You can also Reverse Search an anime clip simply by sending a video, gif or a photo and get the details to download the Anime',
+            reply_markup=types.InlineKeyboardMarkup(
+                [[types.InlineKeyboardButton('Page 4', callback_data='docs_4')]]
+            )
+        )
+    elif data == '4':
         return await query.message.edit(
             __header__.format(data)
             + 'That is the end of the documentation. if you face an Issue on the bot, please report to the support chat. Developer will fix the issue soon as possible. @AniRocksBot is a one man team product made on purpuse to serve Telegram users Anime without a delay.',
