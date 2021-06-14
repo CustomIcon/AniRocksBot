@@ -13,7 +13,7 @@ async def search_handler(client:bot, message: types.Message):
     if len(data) == 0:
         return await message.reply(f'**Cannot find any results for:** {message.text}')
     for anime in data:
-        if len(anime.id) > 56:
+        if len(anime.id) > 58:
             continue
         buttons.append(
             [
