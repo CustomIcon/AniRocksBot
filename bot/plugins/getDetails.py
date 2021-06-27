@@ -12,7 +12,7 @@ async def anime_handler(_, query: types.CallbackQuery):
         return await query.message.edit('Cannot Resolve Anime Details')
     back_s = '\n'
     await query.message.edit(
-        f'**{ani.title} ({ani.native})** - [{ani.format}]\n**Genres:** {ani.genres}'
+        f'**{ani.title}** - [{ani.format}]\n**Genres:** {ani.genres}'
         f'\n**Status:** {"".join(ani.status.split())} {"" if ani.summary == "" else back_s+"**Summary:**"+back_s+ani.summary}'
         f'\n\n__Total {len(anime.result)} Episodes__[\u200c\u200c\u200e]({ani.image})',
         reply_markup=types.InlineKeyboardMarkup(
