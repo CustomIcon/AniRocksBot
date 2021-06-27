@@ -9,7 +9,19 @@ async def anime_handler(_, query: types.CallbackQuery):
     try:
         ani = anime.results[0]
     except IndexError:
-        return await query.message.edit('Cannot Resolve Anime Details')
+        return await query.message.edit(
+            'Cannot Resolve Anime Details',
+            reply_markup=types.InlineKeyboardMarkup(
+                        [
+                            [
+                                types.InlineKeyboardButton(
+                                    'Fetch Episodes',
+                                    callback_data=f'ep_{query.data.split("_")[1]}_{len(anime.result)}'
+                                )
+                            ]
+                        ]
+                    )
+            )
     back_s = '\n'
     await query.message.edit(
         f'**{ani.title}** - [{ani.format}]\n**Genres:** {ani.genres}'
