@@ -20,7 +20,7 @@ def range1(start, end):
 def page(page_n, episodes, anime_id, prefix):
     ep = [EqInlineKeyboardButton(
             f"Ep.{episode}",
-            callback_data='an_{}_{}_{}'.format(anime_id, episode, episodes)
+            callback_data='an_{}_{}'.format(anime_id, episode)
         ) for episode in range1(1, int(episodes))]
     pairs = list(zip(ep[::3], ep[1::3], ep[2::3]))
     c = 0

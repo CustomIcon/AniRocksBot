@@ -60,7 +60,7 @@ async def episode_handler(_, query: types.CallbackQuery):
     data = await bot.fetch_episodes(
                 anime_id=anime_id, episode=query.data.split('_')[2]
             )
-    if len(data.results) == 0:
+    if len(data.links) == 0:
         return await query.message.edit(
             '**Episode you requested is not Available at the moment**',
             reply_markup=types.InlineKeyboardMarkup(
@@ -70,17 +70,18 @@ async def episode_handler(_, query: types.CallbackQuery):
         )
     buttons = [
         [
-            types.InlineKeyboardButton('Stream', url=data.results[0].link.replace('//', ''))
+            types.InlineKeyboardButton(anime.size, url=anime.src)
+            for anime in data.links
         ],
         [
-            types.InlineKeyboardButton('Download', url=data.results[0].other_server.replace('streaming.php', 'download'))
+            types.InlineKeyboardButton('Direct Stream', url=f'https://www.aniryu.me/watching/{anime_id}/{query.data.split("_")[2]}')
         ],
         [
-            types.InlineKeyboardButton('Back to Episodes', callback_data=f'ep_{anime_id}_{query.data.split("_")[3]}')
+            types.InlineKeyboardButton('Back to Episodes', callback_data=f'ep_{anime_id}_{data.totalepisode}')
         ]
     ]
     await query.message.edit(
-        f'**{data.results[0].schedule}**\n**Episode:** __{data.results[0].current_episode_name}__[\u200c\u200c\u200e]({data.results[0].episode_thumbnail})\n',
+        'Thank you for using @AniRocksBot. This is an Ad-Free Opensource project, and a One-Man Team Driven Product.\n**Here is your Request:**',
         reply_markup=types.InlineKeyboardMarkup(buttons)
     )
     await query.answer()

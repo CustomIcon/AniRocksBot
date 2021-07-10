@@ -41,7 +41,7 @@ class bot(Client):
         return (await anirocks.search(query=query, page=1)).results
     
     async def anime_details(self, anime_id: str):
-        return (await anirocks.details(anime_id))
+        return (await anirocks.details(anime_id)).results[0]
     
     async def fetch_episodes(self, anime_id, episode):
         return (await anirocks.watch(anime_id, episode))

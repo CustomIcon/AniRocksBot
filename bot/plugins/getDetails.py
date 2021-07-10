@@ -6,33 +6,17 @@ from pyrogram import types, filters
 async def anime_handler(_, query: types.CallbackQuery):
     await query.message.edit('**Processing...**')
     anime = await bot.anime_details(query.data.split('_')[1])
-    try:
-        ani = anime.results[0]
-    except IndexError:
-        return await query.message.edit(
-            'Cannot Resolve Anime Details',
-            reply_markup=types.InlineKeyboardMarkup(
-                        [
-                            [
-                                types.InlineKeyboardButton(
-                                    'Fetch Episodes',
-                                    callback_data=f'ep_{query.data.split("_")[1]}_{len(anime.result)}'
-                                )
-                            ]
-                        ]
-                    )
-            )
     back_s = '\n'
     await query.message.edit(
-        f'**{ani.title}** - [{ani.format}]\n**Genres:** {ani.genres}'
-        f'\n**Status:** {"".join(ani.status.split())} {"" if ani.summary == "" else back_s+"**Summary:**"+back_s+ani.summary}'
-        f'\n\n__Total {len(anime.result)} Episodes__[\u200c\u200c\u200e]({ani.image})',
+        f'**{anime.title} ({anime.Othername})** - [{anime.type}]\n**Genres:** {anime.genres}'
+        f'\n**Status:** {"".join(anime.status.split())} {anime.relased}{"" if anime.summary == "" else back_s+"**Summary:**"+back_s+anime.summary}'
+        f'\n\n__Total {anime.totalepisode} Episodes__[\u200c\u200c\u200e]({anime.image})',
         reply_markup=types.InlineKeyboardMarkup(
             [
                 [
                     types.InlineKeyboardButton(
                         'Fetch Episodes',
-                        callback_data=f'ep_{query.data.split("_")[1]}_{len(anime.result)}'
+                        callback_data=f'ep_{query.data.split("_")[1]}_{anime.totalepisode}'
                     )
                 ]
             ]
